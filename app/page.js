@@ -15,7 +15,7 @@ export default function Home() {
         <StudentInfo />
       </div>
       <nav>
-        <Link href="../week2/page"> Week 2</Link>
+        <Link href="/week2"> Week 2</Link>
       </nav>
     </main>
   );

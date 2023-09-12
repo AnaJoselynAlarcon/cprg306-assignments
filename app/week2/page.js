@@ -1,5 +1,5 @@
 import Link from "next/link";
-import StudentInfo from "../app/StudentInfo";
+import StudentInfo from "../StudentInfo";
 import React from "react";
 
 export default function Home() {
