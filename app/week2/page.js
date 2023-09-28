@@ -4,12 +4,12 @@ import React from "react";
 
 export default function Home() {
   return (
-    <main>
+    <main className="flex flex-col justify-center items-center w-screen">
       <div>
         <p>This is Week 2</p>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <div className="mb-32 text-center font-mono text-pink-400 bg-white py-10 w-1/2 rounded-full">
         <StudentInfo />
       </div>
       <Link href="/"> Back Home</Link>
