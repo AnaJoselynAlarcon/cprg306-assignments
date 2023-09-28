@@ -46,7 +46,7 @@ export default function NewItem() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="text-white flex-auto flex-auto justify-center">
+      className="text-white flex-auto justify-center">
       <label className="flex flex-col mb-4">
         <span className="text-lg font-medium mb-1">Name:</span>
         <input
@@ -87,7 +87,7 @@ export default function NewItem() {
 
       <button
         type="submit"
-        className="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        className="mb-10 bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Submit
       </button>
     </form>
