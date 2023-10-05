@@ -54,9 +54,9 @@ export default function ItemList() {
           {listOfItems
             .sort((a, b) => a[sortBy].localeCompare(b[sortBy]))
             .map((item) => (
-              <li>
+              <li key={item.id}>
+                {/* the first element after the map has to contain the key!! */}
                 <Item
-                  key={item.id}
                   name={item.name}
                   quantity={item.quantity}
                   category={item.category}
