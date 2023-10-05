@@ -27,6 +27,10 @@ export default function Home() {
         <button className="bg-white text-black border-yellow-500 border-2 px-4 py-2 rounded-md">
           <Link href="/week4">Week 4</Link>
         </button>
+
+        <button className="bg-white text-black border-yellow-500 border-2 px-4 py-2 rounded-md">
+          <Link href="/week5">Week 5</Link>
+        </button>
       </div>
     </main>
   );
