@@ -1,14 +1,22 @@
+import React from "react";
 import Link from "next/link";
 import StudentInfo from "./StudentInfo";
-import React from "react";
+
+const weeks = [
+  { name: "Week 2", url: "/week2" },
+  { name: "Week 3", url: "/week3" },
+  { name: "Week 4", url: "/week4" },
+  { name: "Week 5", url: "/week5" },
+  { name: "Week 6", url: "/week6" },
+];
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen justify-center items-center p-24">
-      <div className="text-center">
-        <p className="border-b border-pink-300 bg-gray pb-6 pt-8">
+    <main className="flex min-h-screen justify-center items-center bg-gradient-to-b from-blue-500 to-purple-500 p-12">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-white">
           CPRG 306: Web Development 2 - Assignments
-        </p>
+        </h1>
       </div>
 
       <div className="mr-8">
@@ -16,22 +24,18 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <button className="bg-white text-black border-yellow-500 border-2 px-4 py-2 rounded-md">
-          <Link href="/week2">Week 2</Link>
-        </button>
-
-        <button className="bg-white text-black border-yellow-500 border-2 px-4 py-2 rounded-md">
-          <Link href="/week3">Week 3</Link>
-        </button>
-
-        <button className="bg-white text-black border-yellow-500 border-2 px-4 py-2 rounded-md">
-          <Link href="/week4">Week 4</Link>
-        </button>
-
-        <button className="bg-white text-black border-yellow-500 border-2 px-4 py-2 rounded-md">
-          <Link href="/week5">Week 5</Link>
-        </button>
+        {weeks.map((week, index) => (
+          <button
+            key={index}
+            className="bg-white text-blue-500 border-blue-500 border-2 px-6 py-3 rounded-full hover:bg-blue-600 hover:text-white transition duration-300">
+            <Link href={week.url}>{week.name}</Link>
+          </button>
+        ))}
       </div>
+
+      {/* <div className="w-32 h-32 bg-cover rounded-full border-4 border-white border-opacity-50 overflow-hidden">
+        <img src=".images" alt="LinkedIn" />
+      </div> */}
     </main>
   );
 }
