@@ -34,7 +34,7 @@ export default function Home() {
       </div>
 
       {/* <div className="w-32 h-32 bg-cover rounded-full border-4 border-white border-opacity-50 overflow-hidden">
-        <img src=".images" alt="LinkedIn" />
+        <img src="../images/linkedin.jpg" alt="LinkedIn" />
       </div> */}
     </main>
   );
