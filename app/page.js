@@ -8,6 +8,7 @@ const weeks = [
   { name: "Week 4", url: "/week4" },
   { name: "Week 5", url: "/week5" },
   { name: "Week 6", url: "/week6" },
+  { name: "Week 7", url: "/week7" },
 ];
 
 export default function Home() {
@@ -32,10 +33,6 @@ export default function Home() {
           </button>
         ))}
       </div>
-
-      {/* <div className="w-32 h-32 bg-cover rounded-full border-4 border-white border-opacity-50 overflow-hidden">
-        <img src="../images/linkedin.jpg" alt="LinkedIn" />
-      </div> */}
     </main>
   );
 }
