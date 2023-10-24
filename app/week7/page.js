@@ -11,6 +11,8 @@ import itemsData from "./items.json";
 
 import MealIdeas from "./meal-ideas";
 
+import Item from "./item";
+
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -21,8 +23,7 @@ export default function Home() {
   const [selectedItem, setSelectedItem] = useState("");
 
   //function to handle item select
-  const handleItemSelect = (itemName) => {
-    console.log(`Selected ${itemName}`);
+  const handleSelectedItem = (itemName) => {
     setSelectedItem(itemName);
   };
 
@@ -30,7 +31,7 @@ export default function Home() {
   const handleAddItem = (item) => {
     //adds a new item to itemsData
     console.log(`Submitting ${item.name} ${item.quantity} ${item.category}`);
-    console.log(items);
+
     setItems([...items, item]);
   };
 
@@ -39,10 +40,10 @@ export default function Home() {
       <h1 className="border-sky-500 border-2 p-4 text-center-xl text-center font-bold">
         Shopping List
       </h1>
-      <div className="flex justify-center">
+      <div className="flex flex-col items-center">
         <NewItem onAddItem={handleAddItem} />
 
-        <ItemList onItemSelect={handleItemSelect} items={items} />
+        <ItemList onItemSelect={handleSelectedItem} itemsList={items} />
 
         <MealIdeas ingredient={selectedItem} />
       </div>

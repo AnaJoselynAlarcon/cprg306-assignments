@@ -1,50 +1,73 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
+const separateWords = (ingredient) => {
+  // Split the text into an array of words using spaces as the delimiter
+  let firstWord = ingredient.split(" ")[0];
+  return firstWord.replace(",", "");
+};
 
 export default function MealIdeas({ ingredient }) {
   // State
   const [meals, setMeals] = useState([]);
   const [selectedMeal, setSelectedMeal] = useState("");
 
-  // Function to fetch meal ideas based on the ingredient
-  async function fetchMealIdeas(ingredient) {
-    try {
-      const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
-      );
-      const data = await response.json();
-      return data.meals || [];
-    } catch (error) {
-      console.error("Error fetching meal ideas:", error);
-      return [];
-    }
-  }
-
-  // useEffect to load meal list
   useEffect(() => {
-    if (ingredient) {
-      fetchMealIdeas(ingredient).then((meals) => setMeals(meals));
-    }
+    const cleanedIngredient = separateWords(ingredient);
+
+    const getMeals = async () => {
+      const response = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/filter.php?i=${cleanedIngredient}`
+      );
+      console.log(cleanedIngredient);
+      const data = await response.json();
+      console.log(data.meals);
+      setMeals(data.meals);
+    };
+    getMeals();
   }, [ingredient]);
 
   return (
-    <main>
+    <main className="text-black">
       <h1>Meals!</h1>
       <div>
         {/* Render a dropdown to select a meal */}
-        <select
-          name="strMeal"
-          value={selectedMeal}
-          onChange={(event) => setSelectedMeal(event.target.value)}>
-          <option value="">Select</option>
-          {meals.map((meal) => (
-            <option key={meal.idMeal} value={meal.strMeal}>
-              {meal.strMeal}
-            </option>
-            //display the image
-          ))}
-        </select>
+        {meals && meals.length ? (
+          <select
+            value={selectedMeal}
+            onChange={(e) => setSelectedMeal(e.target.value)}>
+            <option value="">Select a Meal</option>
+            {meals.map((meal, index) => (
+              <option key={meal.idMeal} value={meal.strMeal}>
+                {meal.strMeal}
+              </option>
+            ))}
+          </select>
+        ) : null}
+      </div>
+
+      <div className="text-white">
+        {meals && meals.length ? (
+          <div>
+            <ul>
+              {meals.map((meal) => (
+                <li key={meal.idMeal} value={meal.strMeal}>
+                  {" "}
+                  {meal.strMeal}{" "}
+                  <Image
+                    width={100}
+                    height={100}
+                    src={meal.strMealThumb}
+                    alt={meal.strMeal}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div>No meals found</div>
+        )}
       </div>
 
       {/* Render the selected meal details if 'meals' is not empty */}
