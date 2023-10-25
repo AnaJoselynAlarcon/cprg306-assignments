@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
 const separateWords = (ingredient) => {
+  // Split the text into an array of words using spaces as the delimiter
   let firstWord = ingredient.split(" ")[0];
   return firstWord.replace(",", "");
 };
 
 export default function MealIdeas({ ingredient }) {
+  // State
   const [meals, setMeals] = useState([]);
   const [selectedMeal, setSelectedMeal] = useState("");
 
@@ -19,7 +20,9 @@ export default function MealIdeas({ ingredient }) {
       const response = await fetch(
         `https://www.themealdb.com/api/json/v1/1/filter.php?i=${cleanedIngredient}`
       );
+      console.log(cleanedIngredient);
       const data = await response.json();
+      console.log(data.meals);
       setMeals(data.meals);
     };
     getMeals();
@@ -27,11 +30,11 @@ export default function MealIdeas({ ingredient }) {
 
   return (
     <main className="text-black">
-      <h1 className="text-3xl font-bold mb-4">Meals!</h1>
+      <h1>Meals!</h1>
       <div>
+        {/* Render a dropdown to select a meal */}
         {meals && meals.length ? (
           <select
-            className="py-2 px-4 border border-gray-300 rounded-md"
             value={selectedMeal}
             onChange={(e) => setSelectedMeal(e.target.value)}>
             <option value="">Select a Meal</option>
@@ -47,13 +50,11 @@ export default function MealIdeas({ ingredient }) {
       <div className="text-white">
         {meals && meals.length ? (
           <div>
-            <ul className="mt-4">
+            <ul>
               {meals.map((meal) => (
-                <li
-                  key={meal.idMeal}
-                  value={meal.strMeal}
-                  className="flex items-center space-x-4 py-2 border-white">
-                  <span>{meal.strMeal}</span>
+                <li key={meal.idMeal} value={meal.strMeal}>
+                  {" "}
+                  {meal.strMeal}{" "}
                   <Image
                     width={100}
                     height={100}
@@ -69,21 +70,16 @@ export default function MealIdeas({ ingredient }) {
         )}
       </div>
 
+      {/* Render the selected meal details if 'meals' is not empty */}
       {selectedMeal && meals.length > 0 && (
-        <div className="mt-4 flex grid-cols-3">
-          <h2 className="text-2xl font-bold mb-2">
-            Selected Meal: {selectedMeal}
-          </h2>
+        <div>
+          <h2>Selected Meal: {selectedMeal}</h2>
           {meals.map((meal) => {
             if (meal.strMeal === selectedMeal) {
               return (
-                <div key={meal.idMeal} className="flex items-center">
-                  <h3 className="font-bold">{meal.strMeal}</h3>
-                  <img
-                    className="w-20 h-20 rounded-full"
-                    src={meal.strMealThumb}
-                    alt={meal.strMeal}
-                  />
+                <div key={meal.idMeal}>
+                  <h3>{meal.strMeal}</h3>
+                  <img src={meal.strMealThumb} alt={meal.strMeal} />
                 </div>
               );
             }

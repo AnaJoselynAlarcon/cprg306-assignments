@@ -9,6 +9,7 @@ const weeks = [
   { name: "Week 5", url: "/week5" },
   { name: "Week 6", url: "/week6" },
   { name: "Week 7", url: "/week7" },
+  { name: "Week 8", url: "/week8" },
 ];
 
 export default function Home() {
