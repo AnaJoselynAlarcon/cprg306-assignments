@@ -1,35 +1,43 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { useUserAuth } from "./_utils/auth-context";
 
-function LandingPage() {
+export default function Page() {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
-  const handleGitHubSignIn = async () => {
-    await gitHubSignIn();
-  };
+  function handleGitHubSignIn() {
+    gitHubSignIn();
+  }
 
-  const handleFirebaseSignOut = async () => {
-    await firebaseSignOut();
-  };
+  function handleFirebaseSignOut() {
+    firebaseSignOut();
+  }
 
   return (
-    <div>
-      {user ? ( // Check if the user is logged in
-        <div>
-          <p>
-            Welcome, {user.displayName} ({user.email})
-          </p>
-          <button onClick={handleFirebaseSignOut}>Logout</button>
-          <Link to="/shopping-list">Go to Shopping List</Link>
-        </div>
-      ) : (
-        <div>
-          <p>You are not logged in.</p>
-          <button onClick={handleGitHubSignIn}>Login with GitHub</button>
-        </div>
-      )}
-    </div>
+    <main>
+      <div>
+        <p>Welcome, please authenticate </p>
+        {user ? (
+          <button
+            className="bg-green-500  hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            onClick={handleFirebaseSignOut}>
+            Sign Out
+          </button>
+        ) : (
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={handleGitHubSignIn}>
+            Sign In
+          </button>
+        )}
+      </div>
+      <Link
+        href="/"
+        className="px-4 py-2 text-white bg-pink-500 rounded hover:bg-green-600 ">
+        Back Home
+      </Link>
+    </main>
   );
 }
-export default LandingPage;

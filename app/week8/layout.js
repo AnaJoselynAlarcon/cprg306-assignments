@@ -5,3 +5,5 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+
+//provides the layout for the app will get wrapped around the auth context provider

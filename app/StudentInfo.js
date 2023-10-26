@@ -5,12 +5,11 @@
 // Your name
 // Your course section, e.g. CPRG 306 A
 // A link to your GitHub repository
-import Link from "next/link";
 
 export default function StudentInfo() {
   return (
     <div>
-      <h1>Hola I'm Ana Joselyn Alarcon</h1>
+      <h1>Hola Im Ana Joselyn Alarcon</h1>
       <ul>
         <li>CPRG 306 A</li>
         <li>

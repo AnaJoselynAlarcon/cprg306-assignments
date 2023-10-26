@@ -11,6 +11,8 @@ import { auth } from "./firebase";
 
 const AuthContext = createContext();
 
+//context is almost like a global state
+
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
