@@ -21,6 +21,11 @@ export default function Page() {
   }
 
   const handleAddItem = async () => {
+    // Check if the user object exists
+    if (!user || !user.uid) {
+      console.error("User is not authenticated or does not have a UID");
+      return;
+    }
     const item = {
       nameItem,
       quantity,
@@ -80,7 +85,7 @@ export default function Page() {
               className=" text-black"
               type="text"
               name="name"
-              value={name}
+              value={nameItem}
               onChange={(e) => setNameItem(e.target.value)}
             />
           </label>

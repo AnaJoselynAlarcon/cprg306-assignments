@@ -32,7 +32,7 @@ export default function Home() {
 
   const handleAddItem = async (item) => {
     // Call the addItem function to add the item to the shopping list
-    const newItemId = await addItem(user.uid, item);
+    const newItemId = await addItem(user.userId, item);
 
     // Set the ID of the new item
     item.id = newItemId;
